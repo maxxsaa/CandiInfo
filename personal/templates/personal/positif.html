@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<form action="/home">
+    <input type="submit" value="Retour au menu">
+    </form>
+    <br>
+    <br>
+
+
+<h3> Si vous êtes positif au coronavirus, veuillez l'indiquer ci-dessous. Nous avertirons les personnes qui ont été en contact avec vous.
+<p>{{valide}}</p>
+<p style="color: red;">{{état}}</p>
+<p>{{test}}</p>
+</h3>
+{{ neg }}
+<br>
+{%if état %}
+{%else%}
+<br>
+<form action="/positif" method="get">
+    <select name="positif">
+        <option value="positif">Je suis positif.ve.</option>
+    </select>
+    <p>Indiquez la date de votre test.</p>
+    <input type='date' name="date" required>
+    <br>
+    <input type="submit">
+    <br>
+</form>
+{%endif %}
+
+
+
+<p> Voici les réservations où vous avez été en contact avec quelqu'un de positif.</p>
+{%if contact %}
+<div>
+<table style="border: 2px solid blue;">
+    <thead style="background-color: blue;">
+      <tr>
+          <th>Personne</th>
+          <th>Date</th>
+          
+      </tr>
+    </thead>
+    <tbody>  
+          
+          {% for i in contact %}
+          <tr>
+          <td><center>{{ i.lieu }}</center></td>
+          
+          <td><center>{{ i.date }}</center></td>
+          </tr>
+          {%endfor%}
+        
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p> Vous n'avez pas eu de réservation présentant un risque. </p>
+{% endif %}
+
+  <br>
+  <br>
+{% endblock content %}

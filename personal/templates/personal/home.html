@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style='border: 2px  solid #000 ;'>
+<h1> Bienvenue dans votre espace privé, {{name}}.</h1>
+
+<form action="/home" method="GET">
+    
+    <p> <input type='submit' name ='déconnexion' value='Se déconnecter'></input></p>
+</form>
+
+<form action="/encoder">
+    <p> <input type='submit' value='Encoder un établissement.'></input></p>
+</form>
+
+<form action="/reservations">
+    <p> <input type='submit' value='Faites une réservation.'></input></p>
+</form>
+
+<form action="/positif" method="get">
+    <p> <input type='submit' value='Coronavirus'></input></p>
+</form>
+
+<br>
+<form action="/stat" method="get">
+    <p> <input type='submit' value='Statistiques'></input></p>
+</form>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if connecté %}
+<br>
+<form action="/home">
+   
+    <input type="submit" value="Retour au menu">
+    {% else %}
+    <br>
+<form action="/login">
+   
+    <input type="submit" value="Retour au login">
+    {% endif %}
+    </form>
+    <br>
+    
+
+
+
+<h2>Informations des trente derniers jours</h2>
+<h4>Nombre de cas positifs détectés </h4>
+<p>{{caspos}}</p>
+<h4>Nombre de personnes en contact avec un cas positif. </h4>
+<p>{{contactpos}}</p>
+{% endblock content %}

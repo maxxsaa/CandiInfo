@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<form action="/home">
+    <input type="submit" value="Retour au menu">
+    </form>
+    <br>
+    
+    {{ pasgerant }}
+<br>
+    {% if pasgerant %}
+    
+{% else %}
+<h1> Mes établissements </h1>
+
+{% if liste %}
+    <div>
+        
+        <table style="border: 2px solid blue;">
+            <thead style="background-color: blue;">
+                <tr>
+                    <th>Nom</th>
+                    <th>Capacité</th>
+                    <th>Provirus</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+
+
+            <tbody>  
+                
+                {% for i in liste %}
+                <tr>
+                <td><center>{{ i.name }}</center></td>
+                <td><center>{{ i.capacity }}</center></td>
+                <td><center>{{ i.provirus }}</center></td>
+                <td><center>
+                    <form action="/encoder" method="get">
+                    <button type='submit' name='supprimer' value={{ i.id }}>Supprimer</button>
+                    </form></center></td>
+                </tr>
+                {%endfor%}
+              
+            </tbody>
+    </table>
+    <br>
+    <br>
+    </div>
+    {% else %}
+    <p> Vous n'avez pas d'établissement</p>
+    {% endif %}
+
+<br>
+
+<div style='border: 2px  solid #000 ;'>
+    <h1> Ici, encodez votre établissement.</h1>
+    <form action="/encoder" method="get">
+        <p>Nom de votre établissement : <input type='text' name='name'></p>
+        <p>Quelle est la capacité de votre établissement : <input type='number' name='capacity' min=1></p>
+        <p>Le lieu est-il provirus ? : 
+            <input required type='radio' name='provirus' value='Provirus' >Oui</input>
+            <input required type='radio' name='provirus' value='Antivirus' >Non</input>
+        </p>
+        <p> <input type='submit' value='Créer mon établissement!'></input></p>
+
+
+    </form>
+    
+    </div>
+    {% endif %}
+    {% endblock content %}

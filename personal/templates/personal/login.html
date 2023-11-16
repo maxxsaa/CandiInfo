@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body><center>
+    <br> <br> 
+<h2> Veuillez vous connecter.</h2>
+{{nom}}
+{%if error %}
+<p>{{ error }}</p>
+{% endif %}
+<form action='/login' method="get">
+<p>Email : <input type='email' name='email'></p>
+<p>Mot de passe : <input type='password' name='password'></p>
+<p><input type='submit' value='Connexion'></p>
+</form>
+
+<form action="/register"><button type='submit'>S'inscrire</button>
+</form>
+
+<form action="/stat" method="GET">
+    
+    <p> <input type='submit' name ='déconnexion' value='Consulter les statistiques du dernier mois.'></input></p>
+</form>
+</center>
+</body>
+<br>
+<br>
+
+
+{% endblock content %}

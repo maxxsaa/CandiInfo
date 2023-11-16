@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><center>
+<head><h2>Créez vous un compte</h2> </head>
+<body>
+<p style="color: red;">{{error}}</p>
+<form action='/register' method="GET">
+    <p>Prénom : <input type='text' name='firstname'></p>
+    <p>Nom : <input type='text' name='lastname'></p>
+    <p>Genre : 
+        <input required type='radio' name='gender' value='M'>Homme</input>
+        <input type='radio' name='gender' value="F">Femme</input>
+        <input type='radio' name='gender' value='X'>Autre</input>
+    </p>
+    <p>Etes-vous gérant ? : 
+        <input type='radio' name='gerant' value='True' >Oui</input>
+        <input type='radio' name='gerant' value='False' >Non</input>
+    </p>
+    <p>Email : <input type='email' name='email'></input></p>
+    <p>Mot de passe : <input type='password' name='password'></input></p>
+    <p>Confirmer mot de passe : <input type='password' name='confirmPassword'></input></p>
+
+<p> Veuillez écrire ce CAPTCHA à l'envers : {{ str }}</p>
+<p><input type='text' name="CAPTCHA"></p>
+
+
+    <p> <input type='submit' value='Connexion'></input></p>
+    <p><input type='reset'></p>
+    
+</form>
+
+<form action="/login" method="get">
+    <p> <input type='submit' value='Retour au login'></input></p>
+</form>
+</center>
+</body>
+
+</html>

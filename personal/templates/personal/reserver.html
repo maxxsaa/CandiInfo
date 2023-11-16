@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<form action="/home">
+  <input type="submit" value="Retour au menu">
+  </form>
+  <br>
+  <br>
+<div style='border: 2px  solid #000 ;'>
+    <h1> Ici, consultez vos réservations</h1>
+    <div>
+      
+
+<br>
+      {% if listeres %}
+      <div style="color: red;">{{ danger }}</div>
+      <br>
+      <table style="border: 2px solid blue;">
+          <thead style="background-color: blue;">
+              <tr>
+                  <th>Lieu</th>
+                  <th>Nombre de personnes</th>
+                  <th>Date</th>
+                  <th>Supprimer</th>
+                  
+              </tr>
+          </thead>
+
+
+          <tbody>  
+              
+              {% for i in listeres %}
+              <tr>
+              <td><center>{{ i.lieu }}</center></td>
+              <td><center>{{ i.nombre }}</center></td>
+              <td><center>{{ i.date }}</center></td>
+              <td><center>
+                <form action="/reservations" method="get">
+                <button type='submit' name='supprimer' value={{ i.id }}>Supprimer</button>
+                </form></center></td>
+              </tr>
+              {%endfor%}
+            
+          </tbody>
+  </table>
+  {% else %}
+  <p> Vous n'avez aucune réservation.</p>
+  {% endif %}
+  <br>
+  <br>
+  </div>
+
+    <h1>Ici, faites une réservation.</h1>
+    <div style="color:red;">{{ error }}</div>
+<form action='/reservations' method="get" id="resform">
+
+    
+    <p> Voulez-vous que l'endroit soit antivirus ?</p>
+    <p><input type='radio' name='Provirus' value="Antivirus">Oui</p>
+    <p><input type='radio' name='Provirus' value='Provirus' >Non</input></p>
+    <p><input type='submit' value='Enregistrer'></p>
+  </form>
+
+  
+{% if suite %}
+<p> Ici, vous verrez apparaitre les lieux correspondant à vos critères.</p>
+<div>
+  <form action="/reservations" method="get" >
+      <table style="border: 2px solid blue;">
+        <thead style="background-color: blue;">
+          <tr>
+              <th>Lieu</th>
+              <th>Provirus</th>
+              <th>Sélectionnez</th>
+          </tr>
+        </thead>
+        <tbody>  
+              
+              {% for i in listelieu %}
+              <tr>
+              <td><center>{{ i.name }}</center></td>
+              
+              <td><center>{{ i.provirus }}</center></td>
+              <td><center><input type='radio' name= 'lieu' value={{ i.id }}></center></td>
+              </tr>
+              {%endfor%}
+            
+        </tbody>
+      </table>
+      <p> Choisissez la date</p>
+    <p><input type='date' name='date'></p>
+
+    <p>Choisissez le nombre de personnes</p>
+    <p><input type='number' name='number' min="1"></p>
+      <br>
+      
+  <input type="submit">
+</form>
+  </div>
+{%endif%}
+    {% endblock content %}
